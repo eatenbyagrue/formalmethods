@@ -26,7 +26,7 @@ to leap-year? [year]
   ]
 
   ;; Same as above, but slightly more compact
-  ifelse ((year mod 4) = 0 and ( (year mod 100) != 0) or (year mod 400) = 0)  [
+  ifelse (year mod 4) = 0 and ( (year mod 100) != 0 or (year mod 400) = 0 )  [
     set output (word output ", Yes, Leap Year!")
   ][
     set output (word output ", Yes, Normal Year!")
@@ -69,7 +69,7 @@ INPUTBOX
 237
 135
 useryear
-2015
+800
 1
 0
 Number
