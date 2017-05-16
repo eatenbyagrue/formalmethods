@@ -1,4 +1,3 @@
-
 to compute-change-please
   ;; Only allow change between 0 and 1
   if not ( 0 <= expected-change and expected-change <= 1) [
@@ -23,7 +22,7 @@ to-report compute-change [remaining-change]
 
     ;; Determine largest coin c with remaining-change - c >= 0
     ;; Depends on coin-types to be ordered ascendingly
-    let largest-coin last (filter [remaining-change - ? >= 0] coin-types)
+    let largest-coin last (filter [ [?] -> remaining-change - ? >= 0] coin-types)
 
     ;; Update list with chosen coin
     set coins-to-report lput largest-coin coins-to-report
@@ -38,10 +37,10 @@ end
 GRAPHICS-WINDOW
 1407
 20
-1846
-480
-16
-16
+1844
+458
+-1
+-1
 13.0
 1
 10
@@ -85,7 +84,7 @@ INPUTBOX
 193
 167
 expected-change
-0.65
+0.33
 1
 0
 Number
@@ -431,9 +430,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.0.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -449,7 +447,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 0
 @#$#@#$#@
