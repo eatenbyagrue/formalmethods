@@ -10,7 +10,7 @@ to setup
 
 end
 
-to next
+to blurb
   set x ( (a * x + c) mod m )
   show x
 end
@@ -23,10 +23,10 @@ end
 GRAPHICS-WINDOW
 697
 57
-1136
-517
-16
-16
+1134
+495
+-1
+-1
 13.0
 1
 10
@@ -52,8 +52,8 @@ BUTTON
 234
 199
 267
-NIL
 next
+blurb
 NIL
 1
 T
@@ -62,7 +62,7 @@ NIL
 NIL
 NIL
 NIL
-0
+1
 
 BUTTON
 131
@@ -87,7 +87,7 @@ INPUTBOX
 292
 226
 seed
-91283
+91283.0
 1
 0
 Number
@@ -450,9 +450,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.0.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -468,7 +467,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 0
 @#$#@#$#@
