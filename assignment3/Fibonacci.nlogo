@@ -4,10 +4,9 @@ to setup
 end
 
 to-report fib [x]
-  ifelse x = 0 OR x = 1 [
-    report 1 ][
-    report ((fib (x - 1)) + (fib (x - 2)))
-  ]
+  ifelse x = 0 OR x = 1
+  [ report 1 ]
+  [ report ((fib (x - 1)) + (fib (x - 2))) ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW

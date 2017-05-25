@@ -7,7 +7,7 @@ end
 
 to compute
   ;; Computes the relative error of compute-pi and writes it to A
-;  reset-ticks
+
   let N 1
   repeat 100000 [
     set A (((compute-pi N) - pi) / pi)

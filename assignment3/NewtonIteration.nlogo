@@ -1,6 +1,13 @@
 to approximate
   ;; Approximates the nth root of x with eps precision
 
+  ;; For now, let's only deal with positive numbers.
+  if (x <= 0 OR n <= 0) [
+    show "Please input numbers greater than 0"
+    stop
+  ]
+
+  ;; The precision threshold (absolute)
   let eps 1E-08
 
   ;; Just use some starting point not too far from the result
@@ -85,7 +92,7 @@ INPUTBOX
 268
 308
 n
-2.0
+15.0
 1
 0
 Number
