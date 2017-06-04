@@ -34,13 +34,13 @@ end
 
 to-report discretize [m]
   ;; Reports the discrete value i for the Moore-Neighborhood-value m.
-  ;; To calculate this with equal probability for each discrete value, assume a range of m from 0 to n.
+  ;; To calculate this with equal probability for each discrete value, assume a range of m from 0 to n-1.
   ;; The range has to be divided into parts of equal length.
   ;; For n values with a length of the range of r = n-1, each part has length r/n.
-  ;; For each discrete value i, the following inequality holds:
+  ;; For discrete value i, the following inequality holds:
   ;; i*r/n <= m <= (i+1)*r/n, where m is the Moore-Neighborhood-value.
-  ;; Then i can be calculated with i = floor(m * n / r) or i = ceiling(m * n / r) - 1, respectively
-  ;; (because of the edge cases not one nice formula)
+  ;; Then i can be calculated with i = floor(m*n/r) or i = ceiling(m*n/r)-1, respectively
+  ;; (because of the edge cases when i = 0 and i = r it's not a single, nice formula).
 
   let n resolution-of-opinions
   let r n - 1
