@@ -4,14 +4,8 @@ globals [converged-after]
 to setup
   clear-all
   resize-world -20 20 -20 20
-;  resize-world -3 3 -3 3
   ask patches [ init-patch ]
   reset-ticks
-  let n resolution-of-opinions
-
-   foreach range 100 [
-    let m ((random 101) / 100) * (n - 1)
-;    show (word m ", " discretize m)
   ]
 end
 
