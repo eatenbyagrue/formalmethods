@@ -4,8 +4,15 @@ globals [converged-after]
 to setup
   clear-all
   resize-world -20 20 -20 20
+;  resize-world -3 3 -3 3
   ask patches [ init-patch ]
   reset-ticks
+  let n resolution-of-opinions
+
+   foreach range 100 [
+    let m ((random 101) / 100) * (n - 1)
+;    show (word m ", " discretize m)
+  ]
 end
 
 to init-patch
@@ -25,6 +32,25 @@ to-report moore-opinion [ppatch]
   report mean lput [opinion] of ppatch [[opinion] of neighbors] of ppatch
 end
 
+to-report discretize [m]
+  ;; Reports the discrete value i for the Moore-Neighborhood-value m.
+  ;; To calculate this with equal probability for each discrete value, assume a range of m from 0 to n.
+  ;; The range has to be divided into parts of equal length.
+  ;; For n values with a length of the range of r = n-1, each part has length r/n.
+  ;; For each discrete value i, the following inequality holds:
+  ;; i*r/n <= m <= (i+1)*r/n, where m is the Moore-Neighborhood-value.
+  ;; Then i can be calculated with i = floor(m * n / r) or i = ceiling(m * n / r) - 1, respectively
+  ;; (because of the edge cases not one nice formula)
+
+  let n resolution-of-opinions
+  let r n - 1
+  let i 0
+  ifelse (m < (r / 2))
+    [set i floor (m * n / r)]
+    [set i (ceiling (m * n / r)) - 1]
+  report i
+end
+
 to go
   ;; Updates the patches with the rounded Moore-opinion.
   ;; Then updates the color
@@ -32,22 +58,22 @@ to go
 
   let CONVERGED true
   ask patches [
-    let new-opinion round moore-opinion self
+    let new-opinion discretize moore-opinion self
     if opinion != new-opinion [set CONVERGED false]
     set opinion new-opinion
     set pcolor color-from-opinion opinion
   ]
 
-  ;; Check whether the lattice converged, but not if already set
+  ;; Check whether the lattice converged and set coverged-after, but not if already set
   if CONVERGED AND NOT (converged-after > 0) [ set converged-after ticks ]
   tick
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-547
-52
-1088
-594
+466
+53
+1007
+595
 -1
 -1
 13.0
@@ -131,7 +157,7 @@ resolution-of-opinions
 resolution-of-opinions
 2
 100
-100.0
+8.0
 1
 1
 NIL
