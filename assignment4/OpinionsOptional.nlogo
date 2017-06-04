@@ -6,7 +6,6 @@ to setup
   resize-world -20 20 -20 20
   ask patches [ init-patch ]
   reset-ticks
-  ]
 end
 
 to init-patch
