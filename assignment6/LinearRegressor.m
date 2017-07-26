@@ -1,7 +1,7 @@
 1;
 
 function linearRegression ()
-  [x, y] = loadData();  
+  [x,y] = loadData();  
   beta = computeSlope(x,y)
   alpha = computeIntercept(x,y,beta)
   
@@ -12,7 +12,7 @@ function linearRegression ()
   plotRegress(x,y,f);
 endfunction
 
-function [x, y] = loadData ()
+function [x,y] = loadData ()
   data = load("a6data.txt");
   x = data(:,2);
   y = data(:,3);
@@ -21,14 +21,8 @@ endfunction
 function beta = computeSlope (x,y)
   x_m = mean(x);
   y_m = mean(y);
-  
-  nom = 0;
-  dnom = 0;
-  for i = 1:length(x)
-    nom += (x(i) - x_m) * (y(i) - y_m);
-    dnom += (x(i) - x_m)^2;
-  endfor
-  beta = nom/dnom;
+  beta = sum((x - x_m) .* (y - y_m)) / sum((x - x_m).^2)
+
 endfunction
 
 function alpha = computeIntercept (x, y, beta)
@@ -37,13 +31,7 @@ endfunction
 
 function R2 = computeRsquared (x, y, f)
   y_m = mean(y);
-  nom = 0;
-  dnom = 0;
-  for i = 1:length(y)
-    nom += (f(x(i)) - y_m)^2;
-    dnom += (y(i) - y_m)^2;
-  endfor
-  R2 = nom/dnom;
+  R2 = sum((f(x) - y_m).^2) / sum((y - y_m).^2)
 endfunction
 
 function plotRegress (x,y, f)
